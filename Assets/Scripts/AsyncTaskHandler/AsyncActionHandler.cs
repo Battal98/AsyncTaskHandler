@@ -1,11 +1,12 @@
-using Managers;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace AsyncTaskHandler
+/// Author : Battal Yigit PATLAR - @Battal98 || Hakan MELEN - @melenglobal
+
+namespace AsyncHandler
 {
     public class AsyncActionHandler
     {
@@ -67,11 +68,9 @@ namespace AsyncTaskHandler
                 catch (Exception ex)
                 {
                     // Log the retry attempt with the task name
-                    LogManager.Log($"Task Retry Failed for '{taskName}': {ex.Message} : IMPORTANT :{isImportant}", LoggerType.Warning, logName: LoggerName.ActionTask);
-                    
+                    Debug.LogError($"Task Retry Failed for '{taskName}': {ex.Message} : IMPORTANT :{isImportant}");
                     retryCount++;
                     var delay = delayBetweenRetries * retryCount;
-                    Debug.Log($"Retrying...  {retryCount}");
                     await Task.Delay(delay, cancellationToken);
                 }
             }
@@ -80,7 +79,7 @@ namespace AsyncTaskHandler
             {
                 if (isImportant)
                 {
-                    LogManager.Log($"Task Retry Failed for {taskName}: IMPORTANT: {isImportant}", LoggerType.Error, logName: LoggerName.ActionTask);
+                    Debug.Log($"Task Retry Failed for {taskName}: IMPORTANT: {isImportant}");
                     StopAllTasks();
                     //TODO: Return the main menu or something
                 }
@@ -103,7 +102,7 @@ namespace AsyncTaskHandler
         {
             if (listeners.Count <= 0) 
             {
-                LogManager.Log("No TaskListener or subscriber", LoggerType.Warning, logName: LoggerName.Test);
+                Debug.LogWarning("No TaskListener or subscriber");
                 return;
             }
             cancellationTokenSource = new CancellationTokenSource();
@@ -125,14 +124,14 @@ namespace AsyncTaskHandler
                     
                     cancellationToken.ThrowIfCancellationRequested();
                 }
-                LogManager.Log($" Finished! - NO ERRORS ", LoggerType.Log, logName: LoggerName.ActionTask);
+                Debug.Log($" Finished! - NO ERRORS ");
                 //break
             }
             catch (OperationCanceledException)
             {
                 // Oyun iptal edildi
-                LogManager.Log($" Action Task Canceled!", LoggerType.Warning, logName: LoggerName.ActionTask);
-                throw; // iptal durumunu yukari do�ru iletmek icin yeniden firlatiliyoruz.
+                Debug.LogWarning($" Action Task Canceled!");
+                throw; // iptal durumunu yukari dogru iletmek icin yeniden firlatiliyoruz.
             }
             
             finally

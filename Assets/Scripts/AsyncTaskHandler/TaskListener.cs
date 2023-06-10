@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AsyncTaskHandler
+namespace AsyncHandler
 {
     public class TaskListener : List<Func<Task>>
     {
