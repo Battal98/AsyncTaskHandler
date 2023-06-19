@@ -24,15 +24,12 @@ Dotween has been used for visual examples.
         private void OnDisable()
         {
             AsyncEventsHandler.TaskOne.Subscription(false, order, TaskOneSubscriber, false);
-
         }
 
         private async Task TaskOneSubscriber()
         {
-	    // its uses DoTween for 
             this.transform.DOMoveZ(this.transform.position.z + 1f, delay);
             await Task.Delay(DelayMultiplier * delay);
-
         }
 ```
 ## How is Insert Tasks?
@@ -43,4 +40,5 @@ Dotween has been used for visual examples.
 	}
 ```
 ## How is it lookslike?
-![Movie_001](https://github.com/Battal98/AsyncTaskHandler/assets/68375602/a6d18c52-ccae-4d28-a151-656765b5dc3e)
+
+![Movie_001](https://github.com/Battal98/AsyncTaskHandler/assets/68375602/7efd44f2-9fbf-4329-859c-ca9e91b5acc1)
