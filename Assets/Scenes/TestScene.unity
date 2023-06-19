@@ -258,7 +258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInsertedText: {fileID: 567839529}
-  orderText: {fileID: 253357208}
+  Task4orderText: {fileID: 253357208}
+  Task1OrderText: {fileID: 563852625}
+  Task3OrderText: {fileID: 476216161}
   obj: {fileID: 1562001835}
   newOrder: 1
 --- !u!4 &184548796
@@ -312,8 +314,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.059999466, y: 2.75}
-  m_SizeDelta: {x: 6.5004, y: 1.6251}
+  m_AnchoredPosition: {x: -0.17, y: 2.32}
+  m_SizeDelta: {x: 4.6924, y: 1.1731}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &253357208
 MonoBehaviour:
@@ -335,9 +337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-    Order: None'
+  m_text: 'Order: None'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -364,12 +364,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7.15
+  m_fontSize: 7.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 3
-  m_fontSizeMax: 72
+  m_fontSizeMax: 7.6
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

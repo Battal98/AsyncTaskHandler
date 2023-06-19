@@ -11,7 +11,8 @@ namespace AsyncHandler
         [SerializeField]
         private TextMeshPro isInsertedText;
         [SerializeField]
-        private TextMeshPro orderText;
+        private TextMeshPro Task4orderText;
+
         [SerializeField]
         private GameObject obj;
         [SerializeField]
@@ -21,7 +22,7 @@ namespace AsyncHandler
         {
             isInsertedText.text = "IsInserted = false";
             isInsertedText.color = Color.red;
-            orderText.text = "Order: None";
+            Task4orderText.text = "Order: None";
         }
 
 #if UNITY_EDITOR
@@ -38,7 +39,7 @@ namespace AsyncHandler
             AsyncEventsHandler.TaskOne.Insert(newOrder, InsertTest);
             isInsertedText.text = "IsInserted = true";
             isInsertedText.color = Color.green;
-            orderText.text = $"Order: {newOrder}";
+            Task4orderText.text = $"Order: {newOrder} ";
         }
         private async Task InsertTest()
         {
