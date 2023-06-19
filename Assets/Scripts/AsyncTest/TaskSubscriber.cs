@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NaughtyAttributes;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace AsyncHandler
 
         private void OnEnable()
         {
-            AsyncEventsHandler.TaskOne.Subscription(true, order, TaskOneSubscriber, false);
+            AsyncEventsHandler.TaskOne.Subscription(isSubscribe: true, order: order, action: TaskOneSubscriber,isImportant: false);
         }
 
         private void OnDisable()
