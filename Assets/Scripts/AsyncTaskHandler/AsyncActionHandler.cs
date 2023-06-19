@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -85,7 +86,45 @@ namespace AsyncHandler
                 }
             }
         }
-        
+
+        public void Insert(int newOrder, Func<Task> action)
+        {
+            // Create a new TaskListener for the new order
+            TaskListener newListener = new TaskListener();
+            newListener.Add(action);
+
+            // Create a new KeyValuePair
+            KeyValuePair<int, TaskListener> newKeyValuePair = new KeyValuePair<int, TaskListener>(newOrder, newListener);
+
+            // Create a temporary list to insert the new KeyValuePair in the correct position and shift the existing orders
+            List<KeyValuePair<int, TaskListener>> tempList = new List<KeyValuePair<int, TaskListener>>();
+
+            // // Insert the new KeyValuePair in the correct position and shift the existing orders
+            bool inserted = false;
+            foreach (var kvp in listeners)
+            {
+                if (!inserted && kvp.Key >= newOrder)
+                {
+                    tempList.Add(newKeyValuePair);
+                    inserted = true;
+                }
+                tempList.Add(new KeyValuePair<int, TaskListener>(kvp.Key + (inserted ? 1 : 0), kvp.Value));
+            }
+
+            // If the new order is greater than the others, add it at the end
+            if (!inserted)
+            {
+                tempList.Add(newKeyValuePair);
+            }
+
+            // Copy the KeyValuePairs from the temporary list to the listeners list
+            listeners.Clear();
+            foreach (var kvp in tempList)
+            {
+                listeners[kvp.Key] = kvp.Value;
+            }
+        }
+
         public void ClearSubscriptions()
         {
             if (listeners.Count <= 0 )
@@ -110,7 +149,7 @@ namespace AsyncHandler
             try
             {
                 string taskName = null;
-                // Diger islemler burada yapilir
+                // Perform other operations here
                 foreach (var order in listeners)
                 {
                     List<Task> tasks = new List<Task>(0);
